@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* FocusBuddy — deep indigo/violet with warm amber accent
+       Calm but energetic: supportive, focused, ADHD-friendly */
+
+    /* Backgrounds */
+    --background: 244 20% 97%;
+    --foreground: 244 20% 10%;
+
+    /* Cards / surfaces */
+    --card: 244 20% 99%;
+    --card-foreground: 244 20% 10%;
+
+    --popover: 244 20% 99%;
+    --popover-foreground: 244 20% 10%;
+
+    /* Primary — deep violet */
+    --primary: 258 60% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary — soft lavender */
+    --secondary: 258 30% 90%;
+    --secondary-foreground: 258 60% 30%;
+
+    /* Muted */
+    --muted: 244 15% 92%;
+    --muted-foreground: 244 10% 48%;
+
+    /* Accent — warm amber */
+    --accent: 38 95% 54%;
+    --accent-foreground: 38 80% 12%;
+
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders */
+    --border: 244 15% 86%;
+    --input: 244 15% 86%;
+    --ring: 258 60% 48%;
+
+    --radius: 0.625rem;
+
+    /* Sidebar */
+    --sidebar-background: 244 25% 12%;
+    --sidebar-foreground: 244 10% 85%;
+    --sidebar-primary: 258 70% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 244 20% 20%;
+    --sidebar-accent-foreground: 244 10% 90%;
+    --sidebar-border: 244 15% 20%;
+    --sidebar-ring: 258 60% 48%;
+
+    /* Success */
+    --success: 152 60% 40%;
+    --success-foreground: 0 0% 100%;
+
+    /* Timer colors */
+    --timer-work: 258 60% 48%;
+    --timer-break: 152 60% 40%;
+    --timer-long-break: 200 70% 45%;
+  }
+
+  .dark {
+    --background: 244 20% 8%;
+    --foreground: 244 10% 90%;
+
+    --card: 244 20% 11%;
+    --card-foreground: 244 10% 90%;
+
+    --popover: 244 20% 11%;
+    --popover-foreground: 244 10% 90%;
+
+    --primary: 258 65% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 258 20% 20%;
+    --secondary-foreground: 258 40% 80%;
+
+    --muted: 244 15% 16%;
+    --muted-foreground: 244 10% 55%;
+
+    --accent: 38 90% 55%;
+    --accent-foreground: 38 80% 10%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 244 15% 20%;
+    --input: 244 15% 20%;
+    --ring: 258 65% 62%;
+
+    --sidebar-background: 244 25% 7%;
+    --sidebar-foreground: 244 10% 80%;
+    --sidebar-primary: 258 70% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 244 20% 14%;
+    --sidebar-accent-foreground: 244 10% 85%;
+    --sidebar-border: 244 15% 14%;
+    --sidebar-ring: 258 65% 62%;
+
+    --success: 152 55% 45%;
+    --success-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Timer ring animation */
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--border)) 50%, hsl(var(--muted)) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
+
+.timer-ring {
+  transition: stroke-dashoffset 1s linear;
+}
+
+.nudge-card {
+  animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.celebrate {
+  animation: bounce-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Video grid layout */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Calendar day grid */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+/* Focus mode overlay */
+.focus-overlay {
+  backdrop-filter: blur(2px);
+}
+
+/* Sidebar active item */
+.sidebar-item-active {
+  background: hsl(var(--sidebar-accent));
+  color: hsl(var(--sidebar-primary));
+}
+
+/* Progress ring */
+.progress-ring {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
